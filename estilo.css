@@ -1,0 +1,72 @@
+
+
+h1{
+    /* color: #0494ce; */
+    color: #000;
+    text-align: center;
+    font-size: 3.5rem;
+    text-shadow: 1px 1px 10px #0469ce;
+
+    
+}
+.añadir{
+    height: 3rem;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+.añadir input{
+    height: 1.5rem;
+    border: none;
+    border-bottom: 2px solid #0494ce;
+    border-left: 1.6px solid #0494ce;
+    border-radius: 5px;
+}
+.hora{
+    width: 2.8rem;
+}
+.actividad{
+    width: 20rem;
+    margin: 1px 7px;
+}
+button{
+    height: 2.2rem;
+    width: 4.8rem;
+    font-size:medium;
+    background-color: #0079a9;
+    border-color: #0494ce;
+    border-radius: 6px;
+    color: #fff;
+}
+.container{
+    background-color: #d8d8d8;
+    margin: 2rem auto;
+    width: 80rem;
+    height: 60rem;
+    border-radius: 2rem;
+    padding: 2rem;
+   
+}
+.lista{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lista h2{
+    width: 48rem;
+    text-align: center;
+    margin: 1rem 0.4rem;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 0.4rem;
+}
+.lista button{
+    background-color: transparent;
+    margin-left: 7px;
+    border-color: transparent;
+    font-size: 1.1rem;
+}
+.eliminar{
+    color: rgb(239, 12, 12);
+}
