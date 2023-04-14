@@ -1,16 +1,19 @@
 body{
     background: linear-gradient(90deg,#f3edff,#c4caff);
 }
-div{
+.container{
     background-color: #fff;
     width: 40rem;
     height: 42rem;
     margin: 2rem auto;
     border-radius: 3rem;
     display: flex;flex-direction: column;
-    justify-content: center;
-    gap: 1.6rem;
+    justify-content:space-evenly;
+    gap: 2.5rem;
     align-items: center;
+}
+.imagen{
+    height: 12rem;
 }
 form{
     display: flex;
@@ -19,20 +22,57 @@ form{
 }
 input{
     width: 28rem;
-    height: 1.8rem;
+    height: 2.2rem;
     padding-left: 0.5rem;
+    border: none;
+    border-bottom: 1.2px solid rgba(172, 172, 172, 0.885);
+    font-size: large;
+    
 }
 input::placeholder{
-    font-size:larger;
+    font-size:large;
     color: rgba(57, 57, 57, 0.769);
     font-weight: bold;
 }
+input:focus{
+    border:  2.8px double #c4caff;
+    border-radius: 0.5rem;
+    outline: none;
+}
 button{
-    width: 24rem;
-    height: 2.8rem;
-    background-color: #415be4;
     color: #fff;
     font-size: medium;
     border: none;
     border-radius: 0.4rem;
+}
+.login{
+    width: 24rem;
+    height: 2.8rem;
+    background-color: #415be4;
+ 
+}
+.login:hover{
+    background-color: #5f76e9 ;
+    cursor: pointer;
+}
+.login:active{
+    background-color: #3654ed;
+}
+.create{
+    width: 5rem;
+    height: 2.2rem;
+    background-color: #db6cf6;
+}
+.create:hover{
+    background-color: #d58de7;
+    cursor: pointer;
+}
+.create:active{
+    background-color: #d353f3;
+}
+.container div{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: large;
 }
