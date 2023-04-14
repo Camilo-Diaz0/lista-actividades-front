@@ -1,0 +1,38 @@
+body{
+    background: linear-gradient(90deg,#f3edff,#c4caff);
+}
+div{
+    background-color: #fff;
+    width: 40rem;
+    height: 42rem;
+    margin: 2rem auto;
+    border-radius: 3rem;
+    display: flex;flex-direction: column;
+    justify-content: center;
+    gap: 1.6rem;
+    align-items: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+input{
+    width: 28rem;
+    height: 1.8rem;
+    padding-left: 0.5rem;
+}
+input::placeholder{
+    font-size:larger;
+    color: rgba(57, 57, 57, 0.769);
+    font-weight: bold;
+}
+button{
+    width: 24rem;
+    height: 2.8rem;
+    background-color: #415be4;
+    color: #fff;
+    font-size: medium;
+    border: none;
+    border-radius: 0.4rem;
+}
