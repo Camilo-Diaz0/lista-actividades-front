@@ -13,5 +13,9 @@ document.querySelector(".login").addEventListener("click", x => {
     document.getElementById("form-login").reset();
 })
 document.querySelector(".create").addEventListener("click", x =>{
-    location.href ="https://google.com";
+    location.href = "register.html";
+})
+
+document.querySelector(".register").addEventListener("click", x => {
+    console.log("Holo");
 })

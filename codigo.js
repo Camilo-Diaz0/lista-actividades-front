@@ -18,7 +18,7 @@ const getDatos = ()=>{
         }).catch(e => {
             console.log(e);
             console.log("su puta madre hijo de puta");
-            // location.href ="https://google.com";
+            location.href ="login.html";
         })
 }
 
