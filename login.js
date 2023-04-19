@@ -15,7 +15,3 @@ document.querySelector(".login").addEventListener("click", x => {
 document.querySelector(".create").addEventListener("click", x =>{
     location.href = "register.html";
 })
-
-document.querySelector(".register").addEventListener("click", x => {
-    console.log("Holo");
-})
