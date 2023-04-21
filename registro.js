@@ -15,7 +15,7 @@ const register = (bodyRegister) =>{
                 location.href = "login.html";
             }else if(res.status == 400){
                 document.querySelector(".uniqueNoAlert").classList = "uniqueAlert";
-                console.log(document.querySelector(".form-register").firstElementChild)
+                console.log(document.querySelector(".form-register").firstElementChild);
                 document.querySelector(".form-register").firstElementChild.style.animation = "fail-input 1s forwards";
             }
         })
