@@ -1,5 +1,10 @@
 let failBoolean = false;
 let bodyLogin = null;
+const newFecha = () =>{
+    let fecha = new Date();
+    fecha.setTime(fecha.getTime() + (1000*60*60*24));
+    return fecha.toUTCString();
+}
 const login = async() =>{
     const peticion = await fetch("http://localhost:8080/usuarios/autenticar",{
         method :"POST",
@@ -10,7 +15,10 @@ const login = async() =>{
         })
     if(peticion.ok){
         const respuesta = await peticion.text();
+        const expires = newFecha();
+        document.cookie = `jwt = Bearer ${respuesta}; expires=${expires}`;
         console.log(respuesta);
+        location.href = "index.html";
     }else if(peticion.status === 400){
         document.querySelector(".noAlertUser").classList = "alertUser";
     }else console.log("error inesperado ")
