@@ -9,27 +9,20 @@
 </head>
 <body>
     <h1>Lista de actividades</h1>
-    <div class="añadir">
-        <input type="number" max="23" min="0" class="hora" placeholder="Hora">
-        <input type="number" max="59" min="0" class="hora" placeholder="Min">
-        <input type="text" class="actividad" placeholder="Escribe una actividad">
-        <button>Añadir</button>
+    <div class="add-container">
+        <form class="add-form">
+            <p class="noAlert"></p>
+            <input type="number" max="23" min="0" class="hora" placeholder="Hora">
+            <input type="number" max="59" min="0" class="hora" placeholder="Min">
+            <input type="text" class="actividad" placeholder="Escribe una actividad">
+        </form>
+        <button class="add-button">Añadir</button>
         
     </div>
     <div class="container">
-        <div class="lista">
-            <input type="checkbox" name="hola" id="">
-            <h2>jugar furbo</h2>
-            <button class="guardar">Guardar</button>
-            <button class="eliminar">Eliminar</button>
-        </div>
-        <div class="lista">
-            <input type="checkbox" name="hola" id="">
-            <h2>vuelven los vampiros</h2>
-            <button class="guardar">Guardar</button>
-            <button class="eliminar">Eliminar</button>
-        </div>
+      
     </div>
+    <script src="js/peticiones.js"></script>
     <script src="js/codigo.js"></script>
 </body>
 </html>
