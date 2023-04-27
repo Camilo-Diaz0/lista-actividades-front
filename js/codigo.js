@@ -1,4 +1,5 @@
 let failBoolean = false;
+let listaActividades;
 
 const probar = ()=>{
     fetch("http://localhost:8080/api/pruebas")
@@ -8,12 +9,11 @@ const probar = ()=>{
 }
 
 addEventListener("load", x => {
-    console.log("holaaaa")
     let cookie = obtenerCookie();
     if(cookie !== ""){
         autHeader = cookie;
     }
-    newActividad("GET",null,0);
+    sendPeticion("GET",null,0);
     //probar();     
 })
 document.querySelector(".add-button").addEventListener("click", x =>{
@@ -45,7 +45,7 @@ document.querySelector(".add-button").addEventListener("click", x =>{
         "actividad" : formulario.children[3].value,
         "usuario" : null
     }
-    newActividad("POST",mensaje,0);
+    sendPeticion("POST",mensaje,0);
 })
 const ajustarHora = (hr,min) =>{
     if(hr >= 0 && min >= 0){
@@ -71,6 +71,7 @@ const alerta = (msj)=>{
 }
 const leer = (list) =>{
     const contenedor = document.querySelector(".container");
+    contenedor.innerHTML = "";  
     let fragmento = document.createDocumentFragment();
     list.forEach(item => {
         const div = document.createElement("DIV");
@@ -78,12 +79,16 @@ const leer = (list) =>{
         const h3 = document.createElement("H3");
         const h2 = document.createElement("H2");
         const saveButton = document.createElement("BUTTON");
-        const delButton = document.createElement("BUTTON");
+        const delButton = document.createElement("BUTTON"); 
 
         div.classList.add("lista");
-        saveButton.classList.add("guardar");
+        saveButton.classList.add("noGuardar");
         delButton.classList.add("eliminar");
+       
         check.setAttribute("type","checkbox");
+        check.checked = item.realizado; 
+        h2.setAttribute("contenteditable","true");
+        h2.setAttribute("spellcheck","false")
 
         saveButton.textContent = "Guardar";
         delButton.textContent = "Eliminar";
@@ -96,6 +101,29 @@ const leer = (list) =>{
         div.appendChild(saveButton)
         div.appendChild(delButton)
         fragmento.appendChild(div);
+
+        check.addEventListener("click", () => {
+            if(saveButton.className === "noGuardar") saveButton.classList.replace("noGuardar","guardar");
+        })
+        h2.addEventListener("keyup", () => {
+           if(saveButton.className === "noGuardar") saveButton.classList.replace("noGuardar","guardar");
+        })
+        saveButton.addEventListener("click", () => {
+            console.log("hola")
+            if(saveButton.className === "guardar"){
+                console.log(check.checked)
+                let mensaje = {
+                    "id" : item.id,
+                    "realizado" : check.checked,
+                    "hora" : h3.textContent,
+                    "actividad" : h2.textContent,
+                    "usuario" : null
+                }
+                console.log(mensaje)
+                sendPeticion("PUT",mensaje,0);
+                saveButton.classList.replace("guardar","noGuardar");
+            }
+    })
     });
     contenedor.appendChild(fragmento);
 }

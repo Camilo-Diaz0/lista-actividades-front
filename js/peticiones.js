@@ -14,7 +14,7 @@ const obtenerCookie = () =>{
     }
     return "";
 }
-const newActividad = async(metodo,mensaje,id) => {
+const sendPeticion = async(metodo,mensaje,id) => {
     let url = "http://localhost:8080/api/actividades";
     if(metodo === "DELETE") url = `http://localhost:8080/api/actividades/${id}`;
     if(mensaje != null) mensaje = JSON.stringify(mensaje);
@@ -28,18 +28,44 @@ const newActividad = async(metodo,mensaje,id) => {
             body : mensaje
             })
         if(peticion.ok){
-            console.log("ok")
             let respuesta = await peticion.json()
-            console.log(respuesta)
-            if(metodo === "GET") leer(respuesta);
+            if(metodo === "GET") {
+                let listOrden = ordernar(respuesta);
+                leer(listOrden);
+            }
+            else sendPeticion("GET",null,0)
         }else if(peticion.status === 404){
             console.log("no found")
         }else if(peticion.status === 403){
             console.log("bloqueado parcero")
-            location.href = "login.html"
+            // location.href = "login.html"
         }else console.log("ni idea")
     }catch(e){
         console.log("manejado perro")
         console.log(e)
     }
+}
+const ordernar = (res) =>{
+    for (let i = 0; i < res.length;i++){
+        for(let j = i+1; j < (res.length);j++){
+            let horai = parseInt(res[i].hora.substring(0,2));
+            let horaj = parseInt(res[j].hora.substring(0,2));
+            let aux;
+            if(horai > horaj){
+                aux = res[i];
+                res[i] = res[j];
+                res[j] = aux;
+            }else if(horai === horaj){
+                horai = parseInt(res[i].hora.substring(3,5));
+                horaj = parseInt(res[j].hora.substring(3,5));
+                if(horai > horaj){
+                    aux = res[i];
+                    res[i] = res[j];
+                    res[j] = aux;
+                }
+            }
+        }
+    }
+    listaActividades = res;
+    return listaActividades;
 }

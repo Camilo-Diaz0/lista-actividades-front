@@ -105,8 +105,29 @@ button:active{
     border-color: transparent;
     font-size: 1.1rem;
 }
+.noGuardar{
+    color: #908e8e9f;
+}
+.noGuardar:hover{
+    cursor: default;
+}
+.guardar{
+    color: #415be4;
+}
+.guardar:hover{
+    color: #697cdad1;
+}
+.guardar:active{
+    color: #ffffff;
+}
 .eliminar{
     color: rgb(239, 12, 12);
+}
+.eliminar:hover{
+    color: rgba(215, 75, 75, 0.71);
+}
+.eliminar:active{
+    color: rgb(255, 255, 255);
 }
 @keyframes fail-input {
     0%{
