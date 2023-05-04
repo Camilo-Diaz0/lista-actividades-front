@@ -133,7 +133,6 @@ const leer = (list) =>{
             }
     })
     delButton.addEventListener("click", () =>{
-        console.log(item.id)
         sendPeticion("DELETE",null,item.id);
     })
     });
