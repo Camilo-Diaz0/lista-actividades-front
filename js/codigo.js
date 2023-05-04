@@ -34,7 +34,6 @@ document.querySelector(".add-button").addEventListener("click", x =>{
         }
     }
     let hora =ajustarHora(parseInt(formulario.children[1].value),parseInt(formulario.children[2].value))
-    console.log(hora)
     if(hora === null){
         alerta(2);
         return;
@@ -71,7 +70,8 @@ const alerta = (msj)=>{
 }
 const leer = (list) =>{
     const contenedor = document.querySelector(".container");
-    contenedor.innerHTML = "";  
+    contenedor.innerHTML = "";
+    if(list === 0) return;
     let fragmento = document.createDocumentFragment();
     list.forEach(item => {
         const div = document.createElement("DIV");
@@ -87,6 +87,10 @@ const leer = (list) =>{
        
         check.setAttribute("type","checkbox");
         check.checked = item.realizado; 
+        if(check.checked){
+            h2.style.backgroundColor = "#6A8BF5";
+            h3.style.backgroundColor = "#6A8BF5";
+        }
         h2.setAttribute("contenteditable","true");
         h2.setAttribute("spellcheck","false")
 
@@ -104,14 +108,19 @@ const leer = (list) =>{
 
         check.addEventListener("click", () => {
             if(saveButton.className === "noGuardar") saveButton.classList.replace("noGuardar","guardar");
+            if(check.checked){
+                h2.style.backgroundColor = "#6A8BF5";
+                h3.style.backgroundColor = "#6A8BF5";
+            }else{
+                h2.style.backgroundColor = "#fff";
+                h3.style.backgroundColor = "#fff";
+            }
         })
         h2.addEventListener("keyup", () => {
            if(saveButton.className === "noGuardar") saveButton.classList.replace("noGuardar","guardar");
         })
         saveButton.addEventListener("click", () => {
-            console.log("hola")
             if(saveButton.className === "guardar"){
-                console.log(check.checked)
                 let mensaje = {
                     "id" : item.id,
                     "realizado" : check.checked,
@@ -119,11 +128,66 @@ const leer = (list) =>{
                     "actividad" : h2.textContent,
                     "usuario" : null
                 }
-                console.log(mensaje)
                 sendPeticion("PUT",mensaje,0);
                 saveButton.classList.replace("guardar","noGuardar");
             }
     })
+    delButton.addEventListener("click", () =>{
+        console.log(item.id)
+        sendPeticion("DELETE",null,item.id);
+    })
     });
     contenedor.appendChild(fragmento);
+}
+document.querySelector(".fin").addEventListener("click", () => {
+    if(listaActividades === undefined) return;
+    let count = 0;
+    let total = listaActividades.length;
+    console.log(count +" "+total)
+    if(total != 0){
+        for(actual of listaActividades){
+            if(actual.realizado === true) count += 1;
+        }
+        console.log(count * 100/total)
+        terminar(count,total);
+    }
+})
+const terminar = (count,total) => {
+    const modal =document.querySelector(".modal-fin");
+    const contenedor = document.querySelector(".modal-contenedor")
+    const fragmento = document.createDocumentFragment();
+    const h2= document.createElement("H2")
+    const h3 = document.createElement("H3");
+    const finButton = document.createElement("BUTTON");
+    let mensaje = "";
+    let color = "";
+    if(count/total < 0.34){ 
+        mensaje = "No fue un dia muy productivo, pero seguro que mañana lo haras mejor"
+        color = "rgb(243, 96, 96)";
+    }else if(count/total < 0.7){
+        mensaje = "Tuviste un buen dia pero se que puedes hacerlo mejor, sigue asi";
+        color = "rgb(239, 227, 60)";
+    }else{ 
+        mensaje = "hoy fue un dia excelente, felicitaciones";
+        color = "rgb(45, 198, 96)";
+    }
+
+    h2.textContent = `Has completado ${count}/${total} de tus actividades diarias`;
+    h3.textContent = mensaje;
+    h2.style.backgroundColor = color;
+    finButton.classList = "delAll";
+    finButton.textContent = "Terminar"
+    fragmento.appendChild(h2);
+    fragmento.appendChild(h3);
+    fragmento.appendChild(finButton);
+    modal.appendChild(fragmento);
+    contenedor.style.display="flex";
+    contenedor.style.animation = "final 1s forwards";
+
+    finButton.addEventListener("click", () =>{
+        console.log("hola")
+        sendPeticion("DELETE",null,-1);
+        window,location.reload();
+    })
+    
 }

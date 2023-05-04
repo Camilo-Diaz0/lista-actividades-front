@@ -16,7 +16,7 @@ const obtenerCookie = () =>{
 }
 const sendPeticion = async(metodo,mensaje,id) => {
     let url = "http://localhost:8080/api/actividades";
-    if(metodo === "DELETE") url = `http://localhost:8080/api/actividades/${id}`;
+    if(metodo === "DELETE" && id != -1) url = `http://localhost:8080/api/actividades/${id}`;
     if(mensaje != null) mensaje = JSON.stringify(mensaje);
     try{ 
         let peticion = await fetch(url,{
@@ -28,20 +28,21 @@ const sendPeticion = async(metodo,mensaje,id) => {
             body : mensaje
             })
         if(peticion.ok){
-            let respuesta = await peticion.json()
             if(metodo === "GET") {
+                let respuesta = await peticion.json()
                 let listOrden = ordernar(respuesta);
                 leer(listOrden);
             }
-            else sendPeticion("GET",null,0)
+            else sendPeticion("GET",null,0);
         }else if(peticion.status === 404){
             console.log("no found")
+            if(metodo === "GET") leer(0);
         }else if(peticion.status === 403){
             console.log("bloqueado parcero")
-            // location.href = "login.html"
+            location.href = "login.html"
         }else console.log("ni idea")
     }catch(e){
-        console.log("manejado perro")
+        console.log("capturando el error")
         console.log(e)
     }
 }
