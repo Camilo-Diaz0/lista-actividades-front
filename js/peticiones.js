@@ -15,8 +15,8 @@ const obtenerCookie = () =>{
     return "";
 }
 const sendPeticion = async(metodo,mensaje,id) => {
-    let url = "http://localhost:8080/api/actividades";
-    if(metodo === "DELETE" && id != -1) url = `http://localhost:8080/api/actividades/${id}`;
+    let url = "https://lista-actividades.onrender.com/api/actividades";
+    if(metodo === "DELETE" && id != -1) url = `https://lista-actividades.onrender.com/api/actividades/${id}`;
     if(mensaje != null) mensaje = JSON.stringify(mensaje);
     try{ 
         let peticion = await fetch(url,{

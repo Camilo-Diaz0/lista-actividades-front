@@ -2,7 +2,7 @@ let failBoolean = false;
 let bodyRegister = null;
 
 const register = (bodyRegister) =>{
-    fetch("http://localhost:8080/usuarios/crear",{
+    fetch("https://lista-actividades.onrender.com/usuarios/crear",{
         method :"POST",
         headers :{
             "Content-Type" : "application/json"

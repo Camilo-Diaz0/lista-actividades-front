@@ -6,7 +6,7 @@ const newFecha = () =>{
     return fecha.toUTCString();
 }
 const login = async() =>{
-    const peticion = await fetch("http://localhost:8080/usuarios/autenticar",{
+    const peticion = await fetch("https://lista-actividades.onrender.com/usuarios/autenticar",{
         method :"POST",
         headers :{
             "Content-Type" : "application/json"
