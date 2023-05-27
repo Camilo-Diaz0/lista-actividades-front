@@ -1,20 +1,11 @@
 let failBoolean = false;
 let listaActividades;
-
-const probar = ()=>{
-    fetch("http://localhost:8080/api/pruebas")
-        .then(res => {
-            console.log(res);
-        }).catch(e => console.log(e))
-}
-
 addEventListener("load", x => {
     let cookie = obtenerCookie();
     if(cookie !== ""){
         autHeader = cookie;
     }
-    sendPeticion("GET",null,0);
-    //probar();     
+    sendPeticion("GET",null,0); 
 })
 document.querySelector(".add-button").addEventListener("click", x =>{
     const formulario = document.querySelector(".add-form");
